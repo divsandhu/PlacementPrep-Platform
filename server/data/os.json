@@ -1,0 +1,95 @@
+{
+  "topic": "os",
+  "name": "Operating Systems",
+  "description": "Questions on process management, memory, file systems, and OS concepts",
+  "difficulties": {
+    "easy": [
+      {
+        "id": "os-1",
+        "question": "What is the main purpose of an operating system?",
+        "options": ["Run applications", "Manage hardware resources", "Provide user interface", "All of the above"],
+        "correctAnswer": "All of the above",
+        "explanation": "An OS manages hardware resources, provides user interface, and enables applications to run.",
+        "tags": ["os-fundamentals"]
+      },
+      {
+        "id": "os-2",
+        "question": "Which scheduling algorithm can cause starvation?",
+        "options": ["FCFS", "Round Robin", "Shortest Job First", "Priority Scheduling"],
+        "correctAnswer": "Priority Scheduling",
+        "explanation": "Priority scheduling can cause starvation if low-priority processes never get CPU time.",
+        "tags": ["scheduling", "process-management"]
+      },
+      {
+        "id": "os-3",
+        "question": "What is a deadlock?",
+        "options": ["Process termination", "Resource allocation", "Circular wait condition", "Memory leak"],
+        "correctAnswer": "Circular wait condition",
+        "explanation": "Deadlock occurs when processes are waiting for each other in a circular manner, preventing progress.",
+        "tags": ["deadlock", "process-management"]
+      },
+      {
+        "id": "os-4",
+        "question": "What is virtual memory?",
+        "options": ["Physical RAM", "Disk storage", "Memory abstraction technique", "Cache memory"],
+        "correctAnswer": "Memory abstraction technique",
+        "explanation": "Virtual memory is a memory management technique that provides an abstraction of physical memory.",
+        "tags": ["memory-management", "virtual-memory"]
+      }
+    ],
+    "medium": [
+      {
+        "id": "os-5",
+        "question": "What is the difference between a process and a thread?",
+        "options": ["Processes share memory, threads don't", "Threads share memory, processes don't", "No difference", "Processes are faster"],
+        "correctAnswer": "Threads share memory, processes don't",
+        "explanation": "Threads within a process share the same memory space, while processes have separate memory spaces.",
+        "tags": ["processes", "threads"]
+      },
+      {
+        "id": "os-6",
+        "question": "What is page replacement algorithm used in virtual memory?",
+        "options": ["FIFO", "LRU", "Optimal", "All of the above"],
+        "correctAnswer": "All of the above",
+        "explanation": "Common page replacement algorithms include FIFO, LRU (Least Recently Used), and Optimal.",
+        "tags": ["memory-management", "paging"]
+      },
+      {
+        "id": "os-7",
+        "question": "What is the purpose of a semaphore?",
+        "options": ["Process synchronization", "Memory allocation", "File access", "Network communication"],
+        "correctAnswer": "Process synchronization",
+        "explanation": "Semaphores are used for process synchronization and mutual exclusion in concurrent programming.",
+        "tags": ["synchronization", "concurrency"]
+      }
+    ],
+    "hard": [
+      {
+        "id": "os-8",
+        "question": "What is the difference between preemptive and non-preemptive scheduling?",
+        "options": ["Preemptive allows interruption, non-preemptive doesn't", "No difference", "Non-preemptive is faster", "Preemptive uses more memory"],
+        "correctAnswer": "Preemptive allows interruption, non-preemptive doesn't",
+        "explanation": "Preemptive scheduling allows the OS to interrupt a running process, while non-preemptive waits for the process to finish.",
+        "tags": ["scheduling"]
+      },
+      {
+        "id": "os-9",
+        "question": "What is thrashing in virtual memory?",
+        "options": ["Fast memory access", "Excessive page swapping", "Memory allocation", "Cache hit"],
+        "correctAnswer": "Excessive page swapping",
+        "explanation": "Thrashing occurs when the system spends more time swapping pages than executing processes.",
+        "tags": ["memory-management", "virtual-memory"]
+      }
+    ]
+  },
+  "timePerQuestion": {
+    "easy": 30,
+    "medium": 25,
+    "hard": 20
+  },
+  "pointsPerQuestion": {
+    "easy": 10,
+    "medium": 15,
+    "hard": 20
+  }
+}

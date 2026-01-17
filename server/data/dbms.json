@@ -1,0 +1,95 @@
+{
+  "topic": "dbms",
+  "name": "Database Management Systems",
+  "description": "Questions on SQL, database design, normalization, and transactions",
+  "difficulties": {
+    "easy": [
+      {
+        "id": "dbms-1",
+        "question": "What does ACID stand for in database transactions?",
+        "options": ["Atomicity, Consistency, Isolation, Durability", "Access, Control, Integrity, Data", "Analysis, Control, Integration, Design", "All, Create, Insert, Delete"],
+        "correctAnswer": "Atomicity, Consistency, Isolation, Durability",
+        "explanation": "ACID properties ensure reliable database transactions: Atomicity, Consistency, Isolation, and Durability.",
+        "tags": ["transactions", "acid"]
+      },
+      {
+        "id": "dbms-2",
+        "question": "What is a primary key?",
+        "options": ["Foreign key", "Unique identifier for a row", "Index", "Constraint"],
+        "correctAnswer": "Unique identifier for a row",
+        "explanation": "A primary key uniquely identifies each row in a table and cannot be null.",
+        "tags": ["keys", "database-design"]
+      },
+      {
+        "id": "dbms-3",
+        "question": "What is normalization?",
+        "options": ["Data encryption", "Organizing data to reduce redundancy", "Data backup", "Index creation"],
+        "correctAnswer": "Organizing data to reduce redundancy",
+        "explanation": "Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity.",
+        "tags": ["normalization", "database-design"]
+      },
+      {
+        "id": "dbms-4",
+        "question": "Which SQL command is used to retrieve data?",
+        "options": ["INSERT", "SELECT", "UPDATE", "DELETE"],
+        "correctAnswer": "SELECT",
+        "explanation": "SELECT is used to retrieve data from a database table.",
+        "tags": ["sql", "queries"]
+      }
+    ],
+    "medium": [
+      {
+        "id": "dbms-5",
+        "question": "What is the difference between INNER JOIN and LEFT JOIN?",
+        "options": ["No difference", "INNER returns matching rows, LEFT returns all left table rows", "LEFT is faster", "INNER uses more memory"],
+        "correctAnswer": "INNER returns matching rows, LEFT returns all left table rows",
+        "explanation": "INNER JOIN returns only matching rows, while LEFT JOIN returns all rows from the left table and matching rows from the right.",
+        "tags": ["sql", "joins"]
+      },
+      {
+        "id": "dbms-6",
+        "question": "What is a foreign key?",
+        "options": ["Primary key", "Reference to another table's primary key", "Index", "Unique constraint"],
+        "correctAnswer": "Reference to another table's primary key",
+        "explanation": "A foreign key is a column that references the primary key of another table, establishing a relationship.",
+        "tags": ["keys", "relationships"]
+      },
+      {
+        "id": "dbms-7",
+        "question": "What is the purpose of an index in a database?",
+        "options": ["Store data", "Improve query performance", "Enforce constraints", "Backup data"],
+        "correctAnswer": "Improve query performance",
+        "explanation": "Indexes improve query performance by allowing faster data retrieval without scanning the entire table.",
+        "tags": ["indexes", "performance"]
+      }
+    ],
+    "hard": [
+      {
+        "id": "dbms-8",
+        "question": "What is a transaction isolation level that prevents dirty reads?",
+        "options": ["READ UNCOMMITTED", "READ COMMITTED", "REPEATABLE READ", "SERIALIZABLE"],
+        "correctAnswer": "READ COMMITTED",
+        "explanation": "READ COMMITTED isolation level prevents dirty reads by only allowing reads of committed data.",
+        "tags": ["transactions", "isolation"]
+      },
+      {
+        "id": "dbms-9",
+        "question": "What is the difference between DELETE and TRUNCATE?",
+        "options": ["No difference", "DELETE can be rolled back, TRUNCATE cannot", "TRUNCATE is slower", "DELETE doesn't reset auto-increment"],
+        "correctAnswer": "DELETE can be rolled back, TRUNCATE cannot",
+        "explanation": "DELETE is a DML operation that can be rolled back, while TRUNCATE is a DDL operation that cannot be rolled back.",
+        "tags": ["sql", "dml", "ddl"]
+      }
+    ]
+  },
+  "timePerQuestion": {
+    "easy": 30,
+    "medium": 25,
+    "hard": 20
+  },
+  "pointsPerQuestion": {
+    "easy": 10,
+    "medium": 15,
+    "hard": 20
+  }
+}

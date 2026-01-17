@@ -14,11 +14,18 @@ export default function Room({ roomId, user, isHost = false }) {
     const [quizData, setQuizData] = useState(null);
     const [hasAnswered, setHasAnswered] = useState(false);
     const [showResults, setShowResults] = useState(false);
+    const [roomDifficulty, setRoomDifficulty] = useState('easy'); // Store room difficulty
 
     useEffect(() => {
         console.log('Room component mounted with:', { roomId, user, isHost });
+        
+        // Connect socket with authentication
         socket.connect();
-        socket.emit("join-room", { roomId, user });
+        
+        // Wait for socket to connect, then join room
+        socket.on('connect', () => {
+            socket.emit("join-room", { roomId, username: user });
+        });
 
         const onUserJoined = (data) => {
             console.log("User joined:", data);
@@ -45,6 +52,9 @@ export default function Room({ roomId, user, isHost = false }) {
             setLeaderboard(state.leaderboard || []);
             setGameState(state.gameState || 'waiting');
             setCurrentQuestion(state.currentQuestion || 0);
+            if (state.difficulty) {
+                setRoomDifficulty(state.difficulty);
+            }
         };
 
         const onQuizStarted = (data) => {
@@ -95,7 +105,16 @@ export default function Room({ roomId, user, isHost = false }) {
 
         const onError = (data) => {
             console.error("Socket error:", data.message);
-            // You could show a toast notification here
+            alert(`Error: ${data.message}`);
+        };
+
+        const onRoomClosed = (data) => {
+            alert(data.message || 'Room has been closed');
+            window.location.href = '/home';
+        };
+
+        const onHostTransferred = (data) => {
+            alert(data.message || 'Host has been transferred');
         };
 
         // Socket event listeners
@@ -109,6 +128,8 @@ export default function Room({ roomId, user, isHost = false }) {
         socket.on("quiz-ended", onQuizEnded);
         socket.on("answer-submitted", onAnswerSubmitted);
         socket.on("error", onError);
+        socket.on("room-closed", onRoomClosed);
+        socket.on("host-transferred", onHostTransferred);
 
         // Fetch initial room info
         fetchRoomInfo();
@@ -124,6 +145,8 @@ export default function Room({ roomId, user, isHost = false }) {
             socket.off("quiz-ended", onQuizEnded);
             socket.off("answer-submitted", onAnswerSubmitted);
             socket.off("error", onError);
+            socket.off("room-closed", onRoomClosed);
+            socket.off("host-transferred", onHostTransferred);
             socket.disconnect();
         };
     }, [roomId, user]);
@@ -135,10 +158,11 @@ export default function Room({ roomId, user, isHost = false }) {
                 setTimeLeft(timeLeft - 1);
             }, 1000);
             return () => clearTimeout(timer);
-        } else if (timeLeft === 0 && !hasAnswered) {
+        } else if (timeLeft === 0 && !hasAnswered && gameState === 'playing') {
             // Auto-submit if time runs out
             handleSubmitAnswer();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeLeft, gameState, hasAnswered]);
 
     const fetchRoomInfo = async () => {
@@ -152,14 +176,20 @@ export default function Room({ roomId, user, isHost = false }) {
 
     const handleStartQuiz = async () => {
         try {
-            const quizData = await quizService.getQuizQuestions('easy');
-            quizService.setCurrentQuiz(quizData);
+            // Use room topic and difficulty from state
+            const topic = roomTopic || location.state?.topic || 'aptitude';
+            const difficulty = roomDifficulty || location.state?.difficulty || 'easy';
+            
+            // Emit start-quiz with topic and difficulty (server will load questions)
             socket.emit("start-quiz", {
                 roomId,
-                quizData: quizData
+                topic: topic,
+                difficulty: difficulty
             });
         } catch (error) {
             console.error("Error starting quiz:", error);
+            // Show error to user
+            alert(`Failed to start quiz: ${error.message || 'Unknown error'}`);
         }
     };
 

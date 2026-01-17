@@ -1,0 +1,119 @@
+{
+  "topic": "dsa",
+  "name": "Data Structures & Algorithms",
+  "description": "Questions on data structures, algorithms, and problem-solving",
+  "difficulties": {
+    "easy": [
+      {
+        "id": "dsa-1",
+        "question": "What is the time complexity of binary search?",
+        "options": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+        "correctAnswer": "O(log n)",
+        "explanation": "Binary search divides the search space in half at each step, resulting in O(log n) time complexity.",
+        "tags": ["algorithms", "time-complexity", "searching"]
+      },
+      {
+        "id": "dsa-2",
+        "question": "Which data structure follows LIFO (Last In First Out) principle?",
+        "options": ["Queue", "Stack", "Array", "Linked List"],
+        "correctAnswer": "Stack",
+        "explanation": "Stack follows LIFO principle where the last element added is the first one to be removed.",
+        "tags": ["data-structures", "stack"]
+      },
+      {
+        "id": "dsa-3",
+        "question": "What is the time complexity of inserting an element at the beginning of an array?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "correctAnswer": "O(n)",
+        "explanation": "Inserting at the beginning requires shifting all existing elements, resulting in O(n) time complexity.",
+        "tags": ["arrays", "time-complexity"]
+      },
+      {
+        "id": "dsa-4",
+        "question": "Which sorting algorithm has the best average time complexity?",
+        "options": ["Bubble Sort", "Quick Sort", "Selection Sort", "Insertion Sort"],
+        "correctAnswer": "Quick Sort",
+        "explanation": "Quick Sort has average time complexity of O(n log n), which is optimal for comparison-based sorting.",
+        "tags": ["algorithms", "sorting"]
+      },
+      {
+        "id": "dsa-5",
+        "question": "What is the space complexity of merge sort?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+        "correctAnswer": "O(n)",
+        "explanation": "Merge sort requires O(n) additional space for the temporary arrays used during merging.",
+        "tags": ["algorithms", "space-complexity", "sorting"]
+      }
+    ],
+    "medium": [
+      {
+        "id": "dsa-6",
+        "question": "What is the time complexity of inserting an element at the beginning of a linked list?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "correctAnswer": "O(1)",
+        "explanation": "Inserting at the beginning of a linked list is O(1) as it only requires updating the head pointer.",
+        "tags": ["data-structures", "linked-list"]
+      },
+      {
+        "id": "dsa-7",
+        "question": "Which data structure is best for implementing a priority queue?",
+        "options": ["Array", "Linked List", "Heap", "Stack"],
+        "correctAnswer": "Heap",
+        "explanation": "Heap (specifically binary heap) is ideal for priority queues as it maintains elements in priority order efficiently.",
+        "tags": ["data-structures", "priority-queue", "heap"]
+      },
+      {
+        "id": "dsa-8",
+        "question": "What is the worst-case time complexity of Quick Sort?",
+        "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+        "correctAnswer": "O(n²)",
+        "explanation": "Quick Sort has worst-case O(n²) when the pivot is always the smallest or largest element.",
+        "tags": ["algorithms", "sorting", "time-complexity"]
+      },
+      {
+        "id": "dsa-9",
+        "question": "In a binary tree, what is the maximum number of nodes at level h?",
+        "options": ["h", "2^h", "2^(h-1)", "h²"],
+        "correctAnswer": "2^h",
+        "explanation": "In a binary tree, level h can have at most 2^h nodes (assuming root is at level 0).",
+        "tags": ["trees", "binary-tree"]
+      }
+    ],
+    "hard": [
+      {
+        "id": "dsa-10",
+        "question": "What is the time complexity of finding the shortest path in an unweighted graph using BFS?",
+        "options": ["O(V)", "O(V + E)", "O(V log V)", "O(V²)"],
+        "correctAnswer": "O(V + E)",
+        "explanation": "BFS visits each vertex once and each edge once, resulting in O(V + E) time complexity.",
+        "tags": ["graphs", "bfs", "algorithms"]
+      },
+      {
+        "id": "dsa-11",
+        "question": "What is the time complexity of Dijkstra's algorithm using a binary heap?",
+        "options": ["O(V)", "O(V + E)", "O((V + E) log V)", "O(V²)"],
+        "correctAnswer": "O((V + E) log V)",
+        "explanation": "With a binary heap, each extract-min and decrease-key operation is O(log V), leading to O((V + E) log V) overall.",
+        "tags": ["graphs", "shortest-path", "algorithms"]
+      },
+      {
+        "id": "dsa-12",
+        "question": "In a balanced BST, what is the time complexity of finding an element?",
+        "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+        "correctAnswer": "O(log n)",
+        "explanation": "In a balanced BST, each comparison eliminates half the remaining nodes, resulting in O(log n) time complexity.",
+        "tags": ["trees", "bst", "searching"]
+      }
+    ]
+  },
+  "timePerQuestion": {
+    "easy": 30,
+    "medium": 25,
+    "hard": 20
+  },
+  "pointsPerQuestion": {
+    "easy": 10,
+    "medium": 15,
+    "hard": 20
+  }
+}

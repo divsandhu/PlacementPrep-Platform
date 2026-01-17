@@ -1,19 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import quizService from "../services/quizService.js";
 
 export default function Home() {
-    const [username, setUsername] = useState("");
+    const { user, profile } = useAuth();
+    const [username, setUsername] = useState(profile?.username || user?.email?.split('@')[0] || "");
     const [roomId, setRoomId] = useState("");
     const [isCreatingRoom, setIsCreatingRoom] = useState(false);
+    const [topic, setTopic] = useState("aptitude");
     const [difficulty, setDifficulty] = useState("easy");
+    const [topics, setTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    // Load available topics on mount
+    useEffect(() => {
+        loadTopics();
+    }, []);
+
+    const loadTopics = async () => {
+        try {
+            const availableTopics = await quizService.getAvailableTopics();
+            setTopics(availableTopics);
+        } catch (error) {
+            console.error('Error loading topics:', error);
+        }
+    };
+
     const handleCreateRoom = async (e) => {
         e.preventDefault();
-        if (!username.trim()) {
+        
+        // Require authentication
+        if (!user) {
+            setError("Please login to create a room");
+            navigate('/auth');
+            return;
+        }
+
+        const displayName = username.trim() || profile?.username || user?.email?.split('@')[0] || 'Guest';
+        
+        if (!displayName) {
             setError("Please enter your username");
             return;
         }
@@ -22,17 +50,21 @@ export default function Home() {
         setError("");
 
         try {
-            const result = await quizService.createRoom(username, difficulty);
+            // Generate a temporary hostId (will be replaced by socket.id when connected)
+            const tempHostId = `temp-${Date.now()}`;
+            const result = await quizService.createRoom(tempHostId, user.id, topic, difficulty);
             const { roomId: newRoomId } = result;
             navigate(`/room/${newRoomId}`, { 
                 state: { 
-                    user: username, 
-                    isHost: true 
+                    user: displayName, 
+                    isHost: true,
+                    topic: topic,
+                    difficulty: difficulty
                 } 
             });
         } catch (error) {
             console.error("Error creating room:", error);
-            setError(error.message);
+            setError(error.message || "Failed to create room. Please try again.");
         } finally {
             setIsLoading(false);
         }
@@ -40,7 +72,9 @@ export default function Home() {
 
     const handleJoinRoom = async (e) => {
         e.preventDefault();
-        if (!username.trim() || !roomId.trim()) {
+        const displayName = username.trim() || profile?.username || user?.email?.split('@')[0] || 'Guest';
+        
+        if (!displayName || !roomId.trim()) {
             setError("Please enter both username and room ID");
             return;
         }
@@ -54,13 +88,13 @@ export default function Home() {
             
             navigate(`/room/${roomId}`, { 
                 state: { 
-                    user: username, 
+                    user: displayName, 
                     isHost: false 
                 } 
             });
         } catch (error) {
             console.error("Error joining room:", error);
-            setError(error.message);
+            setError(error.message || "Failed to join room. Please check the room ID and try again.");
         } finally {
             setIsLoading(false);
         }
@@ -163,21 +197,50 @@ export default function Home() {
                         </div>
 
                         {isCreatingRoom && (
-                            <div className="mb-4">
-                            <label htmlFor="difficulty" className="block text-sm font-medium text-gray-700 mb-2">
-                                Aptitude Level
-                            </label>
-                                <select
-                                    id="difficulty"
-                                    value={difficulty}
-                                    onChange={(e) => setDifficulty(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                >
-                                <option value="easy">Basic Aptitude</option>
-                                <option value="medium">Intermediate Aptitude</option>
-                                <option value="hard">Advanced Aptitude</option>
-                                </select>
-                            </div>
+                            <>
+                                <div className="mb-4">
+                                    <label htmlFor="topic" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Topic
+                                    </label>
+                                    <select
+                                        id="topic"
+                                        value={topic}
+                                        onChange={(e) => setTopic(e.target.value)}
+                                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    >
+                                        {topics.length > 0 ? (
+                                            topics.map((t) => (
+                                                <option key={t.id} value={t.id}>
+                                                    {t.name}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <>
+                                                <option value="aptitude">Aptitude</option>
+                                                <option value="dsa">Data Structures & Algorithms</option>
+                                                <option value="cn">Computer Networks</option>
+                                                <option value="os">Operating Systems</option>
+                                                <option value="dbms">Database Management</option>
+                                            </>
+                                        )}
+                                    </select>
+                                </div>
+                                <div className="mb-4">
+                                    <label htmlFor="difficulty" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Difficulty Level
+                                    </label>
+                                    <select
+                                        id="difficulty"
+                                        value={difficulty}
+                                        onChange={(e) => setDifficulty(e.target.value)}
+                                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    >
+                                        <option value="easy">Easy</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="hard">Hard</option>
+                                    </select>
+                                </div>
+                            </>
                         )}
 
                         {!isCreatingRoom && (

@@ -12,10 +12,12 @@ class QuizService {
   }
 
   // Create a new room
-  async createRoom(hostId, difficulty = 'easy', quizTitle = null) {
+  async createRoom(hostId, hostUserId, topic = 'aptitude', difficulty = 'easy', quizTitle = null) {
     try {
       const response = await axios.post(`${API_BASE_URL}/rooms`, {
         hostId,
+        hostUserId,
+        topic,
         difficulty,
         quizTitle
       });
@@ -38,20 +40,22 @@ class QuizService {
     }
   }
 
-  // Get available quizzes
-  async getAvailableQuizzes() {
+  // Get available topics
+  async getAvailableTopics() {
     try {
-      const response = await axios.get(`${API_BASE_URL}/rooms/quizzes/available`);
-      return response.data.quizzes;
+      const response = await axios.get(`${API_BASE_URL}/rooms/topics`);
+      return response.data.topics;
     } catch (error) {
-      throw new Error(`Failed to get quizzes: ${error.response?.data?.error || error.message}`);
+      throw new Error(`Failed to get topics: ${error.response?.data?.error || error.message}`);
     }
   }
 
-  // Get quiz questions for a specific difficulty
-  async getQuizQuestions(difficulty) {
+  // Get quiz questions for a specific topic and difficulty
+  async getQuizQuestions(topic, difficulty, count = 10) {
     try {
-      const response = await axios.get(`${API_BASE_URL}/rooms/quizzes/${difficulty}`);
+      const response = await axios.get(`${API_BASE_URL}/rooms/quizzes/${topic}/${difficulty}`, {
+        params: { count }
+      });
       return response.data.quiz;
     } catch (error) {
       throw new Error(`Failed to get quiz questions: ${error.response?.data?.error || error.message}`);

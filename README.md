@@ -1,30 +1,34 @@
-# AptitudeArena - Real-time Quiz Application
+# PlacementPrep – Real-Time Placement Preparation Platform
 
-A real-time quiz application where users can join rooms, participate in quizzes, and see live leaderboard updates.
+**PlacementPrep** is a real-time quiz platform built for **placement preparation and collaborative practice**. Users can create or join rooms, attempt synchronized quizzes with friends, and view live leaderboards—making preparation competitive, timed, and engaging.
 
-## Features
+---
 
-- ✅ **Room Creation & Joining**: Create or join quiz rooms with unique room IDs
-- ✅ **Real-time Communication**: WebSocket-based real-time updates
-- ✅ **Quiz Interface**: Interactive quiz questions with multiple choice answers
-- ✅ **Live Leaderboard**: Real-time score updates and rankings
-- ✅ **Timer**: Countdown timer for each question
-- ✅ **Responsive UI**: Modern, mobile-friendly interface with Tailwind CSS
+## 🚀 Features
 
-## Tech Stack
+- ✅ **Room Creation & Joining** – Create or join quiz rooms using unique room IDs  
+- ✅ **Real-time Quiz Sessions** – All participants receive the same questions simultaneously  
+- ✅ **Placement-Oriented Content** – Questions focused on Aptitude, DSA, OS, DBMS, CN, and CS fundamentals  
+- ✅ **Live Leaderboard** – Real-time score updates and rankings  
+- ✅ **Timer-Based Questions** – Time-bound quizzes to simulate actual placement tests  
+- ✅ **Responsive UI** – Clean, modern, mobile-friendly interface built with Tailwind CSS  
+
+---
+
+## 🛠 Tech Stack
 
 ### Frontend
-- React 19
-- Socket.io Client
-- Tailwind CSS
-- React Router DOM
-- Axios
+- React 19  
+- Socket.io Client  
+- Tailwind CSS  
+- React Router DOM  
+- Axios  
 
 ### Backend
-- Node.js
-- Express.js
-- Socket.io
-- CORS
+- Node.js  
+- Express.js  
+- Socket.io  
+- CORS  
 
 ## Project Structure
 
@@ -134,13 +138,7 @@ The client will run on `http://localhost:5173`
 - `update-leaderboard` - Leaderboard updated
 - `answer-submitted` - Answer submitted by user
 
-## Sample Quiz Data
 
-The application includes sample quizzes for three difficulty levels:
-
-- **Easy**: Basic math, geography, and science questions
-- **Medium**: Intermediate level questions with shorter time limits
-- **Hard**: Advanced questions with challenging content
 
 ## Development Notes
 
@@ -155,14 +153,4 @@ The application includes sample quizzes for three difficulty levels:
 - **Error Handling**: Comprehensive error handling for network issues and invalid room IDs
 - **Scalable Design**: Easy to extend with new quiz categories and features
 
-## Future Enhancements
-
-- [ ] Database integration for persistent storage
-- [ ] User authentication and profiles
-- [ ] Custom quiz creation
-- [ ] Multiple quiz categories
-- [ ] Chat functionality in rooms
-- [ ] Spectator mode
-- [ ] Quiz analytics and statistics
-- [ ] Mobile app (React Native)
 

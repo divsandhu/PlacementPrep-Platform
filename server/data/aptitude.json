@@ -1,0 +1,151 @@
+{
+  "topic": "aptitude",
+  "name": "Aptitude",
+  "description": "Quantitative and logical reasoning questions",
+  "difficulties": {
+    "easy": [
+      {
+        "id": "apt-1",
+        "question": "If A is taller than B, and B is taller than C, then A is taller than C. This is an example of:",
+        "options": ["Transitive property", "Commutative property", "Associative property", "Distributive property"],
+        "correctAnswer": "Transitive property",
+        "explanation": "The transitive property states that if A > B and B > C, then A > C.",
+        "tags": ["logic", "mathematics"]
+      },
+      {
+        "id": "apt-2",
+        "question": "What comes next in the sequence: 2, 4, 8, 16, ___?",
+        "options": ["20", "24", "32", "28"],
+        "correctAnswer": "32",
+        "explanation": "Each number is multiplied by 2: 2×2=4, 4×2=8, 8×2=16, 16×2=32",
+        "tags": ["sequences", "patterns"]
+      },
+      {
+        "id": "apt-3",
+        "question": "A shopkeeper sells 20% more items this month than last month. If he sold 120 items last month, how many did he sell this month?",
+        "options": ["140", "144", "150", "160"],
+        "correctAnswer": "144",
+        "explanation": "120 + (20% of 120) = 120 + 24 = 144 items",
+        "tags": ["percentages", "arithmetic"]
+      },
+      {
+        "id": "apt-4",
+        "question": "If 3x + 7 = 22, what is the value of x?",
+        "options": ["3", "4", "5", "6"],
+        "correctAnswer": "5",
+        "explanation": "3x + 7 = 22, so 3x = 15, therefore x = 5",
+        "tags": ["algebra", "equations"]
+      },
+      {
+        "id": "apt-5",
+        "question": "What is 25% of 80?",
+        "options": ["15", "20", "25", "30"],
+        "correctAnswer": "20",
+        "explanation": "25% of 80 = 0.25 × 80 = 20",
+        "tags": ["percentages"]
+      },
+      {
+        "id": "apt-6",
+        "question": "Complete the analogy: Book is to Library as Car is to ___?",
+        "options": ["Garage", "Highway", "Driver", "Engine"],
+        "correctAnswer": "Garage",
+        "explanation": "A book is stored in a library, just as a car is stored in a garage.",
+        "tags": ["analogies", "relationships"]
+      },
+      {
+        "id": "apt-7",
+        "question": "Which word does NOT belong with the others?",
+        "options": ["Square", "Triangle", "Circle", "Rectangle"],
+        "correctAnswer": "Circle",
+        "explanation": "Circle is the only curved shape; the others are all polygons with straight edges.",
+        "tags": ["classification", "patterns"]
+      },
+      {
+        "id": "apt-8",
+        "question": "If all roses are flowers and some flowers are red, which statement must be true?",
+        "options": ["All roses are red", "Some roses are red", "All red things are flowers", "Cannot be determined"],
+        "correctAnswer": "Cannot be determined",
+        "explanation": "We know roses are flowers, but we don't know if roses are among the flowers that are red.",
+        "tags": ["verbal-reasoning", "logic"]
+      }
+    ],
+    "medium": [
+      {
+        "id": "apt-9",
+        "question": "In a class of 30 students, 18 play football and 12 play basketball. If 8 students play both sports, how many play neither?",
+        "options": ["6", "8", "10", "12"],
+        "correctAnswer": "8",
+        "explanation": "Using set theory: Total = Football + Basketball - Both + Neither. 30 = 18 + 12 - 8 + Neither, so Neither = 8",
+        "tags": ["set-theory", "venn-diagrams"]
+      },
+      {
+        "id": "apt-10",
+        "question": "If the ratio of boys to girls in a class is 3:2 and there are 25 students total, how many boys are there?",
+        "options": ["10", "12", "15", "18"],
+        "correctAnswer": "15",
+        "explanation": "Let 3x + 2x = 25, so 5x = 25, x = 5. Boys = 3x = 3 × 5 = 15",
+        "tags": ["ratios", "proportions"]
+      },
+      {
+        "id": "apt-11",
+        "question": "A train travels 120 km in 2 hours. If it continues at the same speed, how far will it travel in 5 hours?",
+        "options": ["240 km", "300 km", "360 km", "480 km"],
+        "correctAnswer": "300 km",
+        "explanation": "Speed = 120/2 = 60 km/h. Distance in 5 hours = 60 × 5 = 300 km",
+        "tags": ["speed", "distance", "time"]
+      },
+      {
+        "id": "apt-12",
+        "question": "If 5 workers can build a wall in 8 days, how many days will it take 8 workers to build the same wall?",
+        "options": ["4 days", "5 days", "6 days", "8 days"],
+        "correctAnswer": "5 days",
+        "explanation": "Using inverse proportion: 5 × 8 = 8 × x, so 40 = 8x, therefore x = 5 days",
+        "tags": ["work", "proportions"]
+      },
+      {
+        "id": "apt-13",
+        "question": "What is the next number in the series: 1, 4, 9, 16, 25, ___?",
+        "options": ["30", "36", "42", "49"],
+        "correctAnswer": "36",
+        "explanation": "This is the sequence of perfect squares: 1², 2², 3², 4², 5², so the next is 6² = 36",
+        "tags": ["sequences", "patterns"]
+      }
+    ],
+    "hard": [
+      {
+        "id": "apt-14",
+        "question": "In a group of 100 people, 60 like coffee, 40 like tea, and 20 like both. How many people like neither coffee nor tea?",
+        "options": ["20", "25", "30", "35"],
+        "correctAnswer": "20",
+        "explanation": "Using set theory: Neither = Total - (Coffee + Tea - Both) = 100 - (60 + 40 - 20) = 100 - 80 = 20",
+        "tags": ["set-theory", "data-interpretation"]
+      },
+      {
+        "id": "apt-15",
+        "question": "A cube has a surface area of 150 cm². What is its volume?",
+        "options": ["125 cm³", "150 cm³", "175 cm³", "200 cm³"],
+        "correctAnswer": "125 cm³",
+        "explanation": "Surface area = 6a² = 150, so a² = 25, a = 5 cm. Volume = a³ = 5³ = 125 cm³",
+        "tags": ["geometry", "3d-shapes"]
+      },
+      {
+        "id": "apt-16",
+        "question": "If the compound interest on a sum for 2 years at 10% per annum is ₹210, what is the principal amount?",
+        "options": ["₹900", "₹950", "₹1000", "₹1050"],
+        "correctAnswer": "₹1000",
+        "explanation": "Let P be principal. CI = P[(1 + r/100)^n - 1]. 210 = P[(1.1)² - 1] = P[0.21]. So P = 210/0.21 = ₹1000",
+        "tags": ["compound-interest", "finance"]
+      }
+    ]
+  },
+  "timePerQuestion": {
+    "easy": 30,
+    "medium": 25,
+    "hard": 20
+  },
+  "pointsPerQuestion": {
+    "easy": 10,
+    "medium": 15,
+    "hard": 20
+  }
+}
