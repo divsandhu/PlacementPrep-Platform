@@ -32,6 +32,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/topics', (req, res) => {
+  try {
+    const topics = getAvailableTopics();
+    res.json({ topics });
+  } catch (error) {
+    console.error('Error getting topics:', error);
+    res.status(500).json({ error: 'Failed to get topics' });
+  }
+});
+
 // Get room information
 router.get('/:roomId', (req, res) => {
   try {
@@ -49,16 +59,7 @@ router.get('/:roomId', (req, res) => {
   }
 });
 
-// Get available topics
-router.get('/topics', (req, res) => {
-  try {
-    const topics = getAvailableTopics();
-    res.json({ topics });
-  } catch (error) {
-    console.error('Error getting topics:', error);
-    res.status(500).json({ error: 'Failed to get topics' });
-  }
-});
+
 
 // Get quiz questions for a specific topic and difficulty
 router.get('/quizzes/:topic/:difficulty', (req, res) => {

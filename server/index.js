@@ -9,14 +9,26 @@ import { socketAuth } from "./middleware/auth.js";
 import roomManager from "./managers/roomManager.js";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    process.env.CLIENT_URL || "http://localhost:5173",
+    "http://localhost:5173",
+    "http://localhost:3000"
+    
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/rooms", roomsRouter);
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { 
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: [
+      process.env.CLIENT_URL || "http://localhost:5173",
+      "http://localhost:5173",
+      "http://localhost:3000"
+    ],
     credentials: true
   }
 });

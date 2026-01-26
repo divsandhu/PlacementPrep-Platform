@@ -9,8 +9,14 @@ export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleSignOut = async () => {
-    await signOut();
-    setShowMenu(false);
+    console.log('Signout button clicked');
+    try {
+      const result = await signOut();
+      console.log('Signout result:', result);
+      setShowMenu(false);
+    } catch (error) {
+      console.error('Signout error:', error);
+    }
   };
 
   return (

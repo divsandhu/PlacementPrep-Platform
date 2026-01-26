@@ -80,6 +80,35 @@ export default function initSocketHandlers(io) {
       }
     });
 
+    // Handle getting room state
+    socket.on('get-room-state', (data) => {
+      const { roomId } = data;
+      
+      try {
+        const room = roomManager.getRoom(roomId);
+        
+        if (!room) {
+          socket.emit('error', { message: 'Room not found' });
+          return;
+        }
+
+        // Send current room state
+        socket.emit('room-state', {
+          participants: roomManager.getParticipants(roomId),
+          leaderboard: roomManager.getLeaderboard(roomId),
+          gameState: room.gameState,
+          currentQuestion: room.currentQuestion,
+          difficulty: room.difficulty,
+          topic: room.topic
+        });
+
+        console.log(`Room state sent for room ${roomId} to ${socket.id}`);
+      } catch (error) {
+        console.error('Error getting room state:', error);
+        socket.emit('error', { message: error.message });
+      }
+    });
+
     // Handle quiz answer submission
     socket.on('submit-answer', (data) => {
       const { roomId, answer, questionIndex } = data;
